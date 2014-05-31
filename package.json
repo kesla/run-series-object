@@ -18,7 +18,8 @@
     "tape": "~2.13.1"
   },
   "dependencies": {
-    "run-series": "~1.0.2"
+    "run-series": "~1.0.2",
+    "run-object-basis": "^1.0.0"
   },
   "repository": {
     "type": "git",
