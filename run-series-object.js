@@ -7,7 +7,7 @@ var series = require('run-series')
       return typeof (val) === 'object' && val !== null
     }
   , run = function (object, callback) {
-      var result = {}
+      var result = Array.isArray(object) ? [] : {}
         , tasks = []
 
       Object.keys(object).forEach(function (key) {

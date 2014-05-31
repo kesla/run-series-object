@@ -45,11 +45,22 @@ test('object with nested object', function (t) {
   })
 })
 
+test('array', function (t) {
+  var obj = [ 'hello', function (done) { done(null, 'world!') } ]
+
+  run(obj, function (err, result) {
+    t.ok(Array.isArray(result))
+    t.deepEqual(result, [ 'hello', 'world!' ])
+    t.end()
+  })
+})
+
 test('object with nested object & some values', function (t) {
   var obj = {
           beep: {
               boop: {
-                foo: function (done) { done(null, 'bar') }
+                  foo: function (done) { done(null, 'bar') }
+                , hello: [ 'world', function (done) { done(null, '!') } ]
               }
             , bong: 'king kong'
           }
@@ -62,7 +73,8 @@ test('object with nested object & some values', function (t) {
       , {
             beep: {
                 boop: {
-                  foo: 'bar'
+                    foo: 'bar'
+                  , hello: [ 'world', '!' ]
                 }
               , bong: 'king kong'
             }
