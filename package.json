@@ -1,6 +1,6 @@
 {
   "name": "run-series-object",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Resolve functions in an object to values",
   "main": "run-series-object.js",
   "scripts": {
