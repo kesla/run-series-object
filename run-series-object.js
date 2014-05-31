@@ -21,6 +21,14 @@ var series = require('run-series')
               done(null)
             })
           })
+        else if (isObj (value))
+          tasks.push(function (done) {
+            run(value, function (err, value2) {
+              if (err) return done(err)
+              result[key] = value2
+              done(null)
+            })
+          })
         else
           result[key] = object[key]
       })
