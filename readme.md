@@ -1,4 +1,4 @@
-# run-series-object[![build status](https://secure.travis-ci.org/kesla/run-series-object.png)](http://travis-ci.org/kesla/run-series-object)
+# run-series-object[![build status](https://secure.travis-ci.org/kesla/run-series-object.svg)](http://travis-ci.org/kesla/run-series-object)
 
 Resolve functions in an object to values
 
@@ -18,6 +18,7 @@ npm install run-series-object
 
 ```javascript
 var run = require('./run-series-object')
+  , stream = require('stream').PassThrough({ objectMode: true })
   , obj = {
         beep: {
             boop: {
@@ -26,7 +27,11 @@ var run = require('./run-series-object')
           , bong: 'king kong'
         }
       , hello: function (done) { done(null, 'world') }
+      , stream: stream
     }
+
+stream.write({ key: 'this is from a stream' })
+stream.end()
 
 run(obj, function (err, result) {
   console.log(result)
@@ -37,7 +42,8 @@ run(obj, function (err, result) {
 
 ```
 { beep: { bong: 'king kong', boop: { foo: 'bar' } },
-  hello: 'world' }
+  hello: 'world',
+  stream: [ { key: 'this is from a stream' } ] }
 ```
 
 ## Licence
